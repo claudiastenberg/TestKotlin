@@ -4,44 +4,31 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import se.claudiastenberg.TestKotlin.repository.data.Animal
 import se.claudiastenberg.TestKotlin.repository.AnimalRepository
-
-import javax.ws.rs.NotFoundException
+import java.util.*
 
 @Service
 class AnimalService(@field:Autowired
                     private val repository: AnimalRepository) {
 
-    /*Create a Animal*/
-    fun createUser(user: Animal): Animal {
-        return repository.save(user)
+    fun createClient(client: Animal): Animal {
+        return repository.save(client)
     }
 
-    /*Get all Animals*/
-    fun getallUsers(): Iterable<Animal> {
+    fun getallClient(): Iterable<Animal> {
         return repository.findAll()
     }
 
-    fun getUser(animalId: Long?): Animal {
-        val animal = repository.findById(animalId!!)
-        if (animal.isPresent) {
-            return animal.get()
-        }
-        throw se.claudiastenberg.TestKotlin.service.exception.NotFoundException("Finns inget djur med detta Id!")
+    fun getClient(clientId: Long?): Animal {
+        val client = repository.findById(clientId!!)
+            return client.get()
     }
 
-    /*upadte*/
-    fun updateUser(animalId: Long?, animal: Animal): Animal {
-        return repository.findById(animalId!!).map { (id, title, ras, age, appointment) -> repository.save(animal) }
-                .orElseThrow { se.claudiastenberg.TestKotlin.service.exception.NotFoundException(String.format("Finns inget djur med detta Id!", animalId)) }
+    fun updateUser(clientId: Long?, client: Animal): Optional<Animal>? {
+        return repository.findById(clientId!!).map { (id, name, ras, age, appointment) -> repository.save(client) }
+    } /*clientId!! betyder att den är NullPointerException säker. Om clientId är null kommer den att kasta ett NPE annars kommer den att hitta ID.*/
 
-    }
-
-    /*delete*/
-    fun deleteUser(animalId: Long?) {
-        val animal = repository.findById(animalId!!)
-        if (!animal.isPresent) {
-            throw se.claudiastenberg.TestKotlin.service.exception.NotFoundException("Finns inget djur med detta Id")
-        }
-        repository.delete(animal.get())
+    fun deleteUser(clientId: Long?) {
+        val client = repository.findById(clientId!!)
+        repository.delete(client.get())
     }
 }

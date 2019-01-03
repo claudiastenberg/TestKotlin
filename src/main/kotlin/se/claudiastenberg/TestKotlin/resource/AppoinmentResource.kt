@@ -2,18 +2,12 @@ package se.claudiastenberg.TestKotlin.resource
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import se.claudiastenberg.TestKotlin.repository.data.Animal
 import se.claudiastenberg.TestKotlin.repository.data.Appointment
 import se.claudiastenberg.TestKotlin.service.AppoinmentService
 
 import javax.ws.rs.*
-import javax.ws.rs.core.Context
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
-import javax.ws.rs.core.UriInfo
-
-import javax.ws.rs.core.Response.Status.NOT_FOUND
-
 
 @Component
 @Path("appoinemts")
@@ -21,12 +15,14 @@ import javax.ws.rs.core.Response.Status.NOT_FOUND
 @Produces(MediaType.APPLICATION_JSON)
 class AppoinmentResource @Autowired
 constructor(private val service: AppoinmentService) {
-    val appoiments: Response
-        @GET
-        get() {
-            service.getallAppoinments()
-            return Response.ok(service.getallAppoinments()).build()
-        }
+
+
+
+    @GET
+    fun getallAppointments(): Response {
+        service.getallAppoinments()
+        return Response.ok(service.getallAppoinments()).build()
+    }
 
     @POST
     fun createAppoinment(appointment: Appointment): Response {

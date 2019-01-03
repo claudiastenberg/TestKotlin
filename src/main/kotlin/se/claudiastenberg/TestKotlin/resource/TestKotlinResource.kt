@@ -23,20 +23,20 @@ constructor(private val service: AnimalService) {
     val users: Response
         @GET
         get() {
-            service.getallUsers()
-            return Response.ok(service.getallUsers()).build()
+            service.getallClient()
+            return Response.ok(service.getallClient()).build()
         }
 
     @POST
-    fun createUser(user: Animal): Response {
-        service.createUser(user)
+    fun createClient(user: Animal): Response {
+        service.createClient(user)
         return Response.ok().build()
     }
 
     @GET
     @Path("{id}")
-    fun getUser(@PathParam("id") id: Long?): Response {
-        return Response.ok(service.getUser(id)).build()
+    fun getClient(@PathParam("id") id: Long?): Response {
+        return Response.ok(service.getClient(id)).build()
     }
 
     @PUT

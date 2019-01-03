@@ -1,6 +1,6 @@
 package se.claudiastenberg.TestKotlin.repository.data
 
-import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
 
 
@@ -9,6 +9,10 @@ import javax.persistence.*
 data class Appointment(@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
                   var id: Long? = null,
                   var cause: String? = null,
-                  @ManyToOne
-                  @JsonBackReference
-                  var animal: Animal? = null)
+                       @OneToMany(mappedBy = "appointment", fetch = FetchType.EAGER)
+                       @JsonManagedReference
+                       var animal: Collection<Animal>? = null)
+
+/*@ManyToOne
+@JsonBackReference
+var animal: Animal? = null*/
