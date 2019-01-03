@@ -15,5 +15,4 @@ data class Animal(@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
                   var age: Int? = null,
                   @OneToMany(mappedBy = "animal", fetch = FetchType.EAGER)
                   @JsonManagedReference
-                  var appointment: Collection<Appointment>? = null
-)
+                  var appointment: Collection<Appointment>? = null)
