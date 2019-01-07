@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 class JerseyConfig : ResourceConfig() {
     init {
         register(se.claudiastenberg.TestKotlin.resource.AppoinmentResource::class.java)
-        register(se.claudiastenberg.TestKotlin.resource.AnimalResource::class.java.kotlin)
+        register(se.claudiastenberg.TestKotlin.resource.AnimalResource::class.java)
     }
 }
 
