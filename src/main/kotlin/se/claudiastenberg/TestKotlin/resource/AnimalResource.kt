@@ -18,7 +18,9 @@ class AnimalResource @Autowired
 constructor(private val service: AnimalService) {
 
     @GET
-    fun get() = service.getallClient()
+    fun getAllClients(): Response {
+        return Response.ok(service.getallClient()).build()
+    }
 
     @POST
     fun createClient(client: Animal): Response {
@@ -43,7 +45,7 @@ constructor(private val service: AnimalService) {
         return Response.noContent().build()
     }
 }
-/*
+/**
 * fun är deklaration för metod.
 * : Response- detta är return type, det kan lika gärna vara ex en Int ifall vi ska returnera en int
 * */

@@ -23,7 +23,6 @@ constructor(private val service: AppoinmentService) {
 
     @GET
     fun getallAppointments(): Response {
-        service.getallAppoinments()
         return Response.ok(service.getallAppoinments()).build()
     }
 
@@ -33,11 +32,10 @@ constructor(private val service: AppoinmentService) {
         return Response.ok().build()
     }
 
-    /*@GET
-    @Path("{id}")
+    @GET @Path("{id}")
     fun getAppoinment(@PathParam("id") id: Long?): Response {
-        return service.getAppoinment(id).map<ResponseBuilder>(Function<Appointment, ResponseBuilder> { Response.ok(it) }).orElse(Response.status(NOT_FOUND)).build()
-    }*/
+        return Response.ok(service.getAppoinment(id)).build()
+    }
 
     @PUT @Path("{id}")
     fun updateAppoiment(@PathParam("id") id: Long?, appointment: Appointment): Response {
