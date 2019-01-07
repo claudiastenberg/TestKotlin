@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response
 
 @Component
 @Path("animals")
-@Consumes(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XHTML_XML)
+@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 class AnimalResource @Autowired
 constructor(private val service: AnimalService) {
@@ -26,23 +26,24 @@ constructor(private val service: AnimalService) {
         return Response.ok().build()
     }
 
-    @GET
-    @Path("{id}")
+    @GET @Path("{id}")
     fun getClient(@PathParam("id") id: Long?): Response {
         return Response.ok(service.getClient(id)).build()
     }
 
-    @PUT
-    @Path("{id}")
+    @PUT @Path("{id}")
     fun updateClient(@PathParam("id") id: Long?, client: Animal): Response {
         service.updateUser(id, client)
         return Response.noContent().build()
     }
 
-    @DELETE
-    @Path("{id}")
+    @DELETE @Path("{id}")
     fun deleteClient(@PathParam("id") id: Long?): Response {
         service.deleteUser(id)
         return Response.noContent().build()
     }
 }
+/*
+* fun är deklaration för metod.
+* : Response- detta är return type, det kan lika gärna vara ex en Int ifall vi ska returnera en int
+* */

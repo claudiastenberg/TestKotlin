@@ -9,3 +9,10 @@ class TestKotlinApplication
 fun main(args: Array<String>) {
     runApplication<TestKotlinApplication>(*args)
 }
+
+/** Ststic finns ej i Kotlin
+ * Istället kan man använda companion object-
+ * Alltså om man vill ha sin main metod i någon annan fil så kan man sätta companion object med annotation
+ * @JVMStstic i så kan den köras där ifrå
+ *
+ * */

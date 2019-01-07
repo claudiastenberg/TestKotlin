@@ -9,14 +9,17 @@ import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
+/**
+ * Constructure keyword används om man vill sätta mer än en konstruktor utöver den primära.
+ * I detta fall har vi ej en primär men vi vill testa att använda detta keyword
+ * I Java måste vi bilda en konstruktor med samma namn som return value. Men här behöver vi bara säga constructor*/
+
 @Component
 @Path("appoinemts")
-@Consumes(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XHTML_XML)
+@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 class AppoinmentResource @Autowired
 constructor(private val service: AppoinmentService) {
-
-
 
     @GET
     fun getallAppointments(): Response {
@@ -36,15 +39,13 @@ constructor(private val service: AppoinmentService) {
         return service.getAppoinment(id).map<ResponseBuilder>(Function<Appointment, ResponseBuilder> { Response.ok(it) }).orElse(Response.status(NOT_FOUND)).build()
     }*/
 
-    @PUT
-    @Path("{id}")
+    @PUT @Path("{id}")
     fun updateAppoiment(@PathParam("id") id: Long?, appointment: Appointment): Response {
         service.updateAppoinment(id, appointment)
         return Response.noContent().build()
     }
 
-    @DELETE
-    @Path("{id}")
+    @DELETE @Path("{id}")
     fun deleteAppoiment(@PathParam("id") id: Long?): Response {
         service.deleteAppoiment(id)
         return Response.noContent().build()

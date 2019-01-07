@@ -1,8 +1,13 @@
 package se.claudiastenberg.TestKotlin.repository.data
 
 import com.fasterxml.jackson.annotation.JsonBackReference
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
+
+/** I detta fall använder vi BARA en primär konstruktor (Define-In line, Inget "new" keyword)
+ * Vi behöver varken en separat konstruktor som säger this.name ex som i Java
+ * Vi behöver inte heller en tom konstruktor som behövs i java för att de ej ska bli kompileringsfel vid anvädning av jersey.
+ * Man kan även skapa proppertoes i klassen, alltså variabler i klassen. MEN dessa kan man då ej använda getter o setter till.
+ * */
 
 @Entity
 @Table(name = "Animal")
@@ -14,9 +19,3 @@ data class Animal(@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
                   @ManyToOne
                   @JsonBackReference
                   var appointment: Appointment? = null)
-                 /*@OneToMany(mappedBy = "animal", fetch = FetchType.EAGER)
-                  @JsonManagedReference
-                  var appointment: Collection<Appointment>? = null)*/
-
-/*Man kan antingen deklarera varabler med var eller med val. val betyder att den då inte är konstant, den går alltså ej att ändra
-* Data class sätter man när man vill att klassen agerar som en model */
