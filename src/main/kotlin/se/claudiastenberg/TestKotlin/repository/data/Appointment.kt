@@ -17,9 +17,9 @@ import javax.persistence.*
 @Entity
 @Table(name = "Appointment")
 data class Appointment(@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-                  var id: Long,
-                  var cause: String? = null,
+                  val id: Long,
+                  val cause: String? = null,
                        @OneToMany(mappedBy = "appointment", fetch = FetchType.EAGER)
                        @JsonManagedReference
-                       var animal: Collection<Animal>? = null)
+                       val animal: Collection<Animal>? = null)
 
