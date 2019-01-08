@@ -8,9 +8,9 @@ import java.util.*
 
 @Service
 class AnimalService(@field:Autowired
-                    private val repository: AnimalRepository) { //Funkar även att ha ARepository
+                    private val repository: AnimalRepository) { //Funkar även att ha ARepository vilken är en FIL.
 
-    fun createClient(client: Animal): Animal {
+    fun createClient(client: Animal): Animal { /** :Animal betyder att return värdet är en Animal*/
         return repository.save(client)
     }
 
@@ -22,9 +22,14 @@ class AnimalService(@field:Autowired
             return repository.findById(clientId!!)
     }
 
-    fun updateUser(clientId: Long?, client: Animal): Optional<Animal>? {
+    fun updateUser(clientId: Long?, client: Animal): Optional<Animal> { /*Dessa  ? säger att OM id INTE är null, gör då detta, annars ge tillbaka null*/
+        /** if (clientId != null){} Detta behövs inte heller,
+         * Istället kan vi använda som i fallet nedan som säger att om den inte är null gör detta annars returnera null
+         * */
         return repository.findById(clientId!!).map { repository.save(client) }
     }
+    /**
+     * Går även att använda .let efter variabeln som säger NÄR variabeln är NULL, gör detta. */
 
     fun deleteUser(clientId: Long?) {
         val client = repository.findById(clientId!!)

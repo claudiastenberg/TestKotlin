@@ -12,7 +12,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "Animal")
 data class Animal(@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-                  var id: Long? = null,
+                  var id: Long? = null, /** Denna ? säger alltså att detta kan vara null*/
                   var name: String,
                   var ras: String,
                   var age: Int,

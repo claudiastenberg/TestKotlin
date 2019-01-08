@@ -20,16 +20,19 @@ class AppoinmentService(@field:Autowired
         return repository.findAll()
     }
 
-     fun getAppoinment(appoinmentId: Long?): Optional<Appointment> {
-         return repository.findById(appoinmentId!!)
+     fun getAppoinment(appoinmentId: Long): Optional<Appointment> {
+         return repository.findById(appoinmentId)
      }
 
-    fun updateAppoinment(appoinmentId: Long?, appointment: Appointment): Optional<Appointment>? {
-        return repository.findById(appoinmentId!!).map { repository.save(appointment) }
+    fun updateAppoinment(appoinmentId: Long, appointment: Appointment): Optional<Appointment> {
+        /** if(appoinmentId != null){} OM vi skulle vilja göra såhär som vi är vana med i Java så hjälper IDE att säga "Condition is always true",
+         med andra ord att detta ej nödvändigt i Kotlin.
+        */
+        return repository.findById(appoinmentId).map { repository.save(appointment) }
     }
 
-    fun deleteAppoiment(appoinmentId: Long?) {
-        val appointment = repository.findById(appoinmentId!!)
+    fun deleteAppoiment(appoinmentId: Long) {
+        val appointment = repository.findById(appoinmentId)
         repository.delete(appointment.get())
     }
 }
