@@ -18,9 +18,8 @@ class AnimalService(@field:Autowired
         return repository.findAll()
     }
 
-    fun getClient(clientId: Long?): Optional<Animal>  {
-            return repository.findById(clientId!!)
-    }
+    fun getClient(clientId: Long?): Optional<Animal> = repository.findById(clientId!!)
+
 
     fun updateUser(clientId: Long?, client: Animal): Optional<Animal> { /*Dessa ? säger att OM id INTE är null, gör då detta, annars ge tillbaka null*/
         /** if (clientId != null){} Detta behövs inte heller,
@@ -30,6 +29,7 @@ class AnimalService(@field:Autowired
     }
     /**
      * Går även att använda .let efter variabeln som säger NÄR variabeln är NULL, gör detta.
+     * .applay / .let
      * Ett annat exempel är println(clientId?.length) denna säger printa om de finns annars printa null*/
 
 

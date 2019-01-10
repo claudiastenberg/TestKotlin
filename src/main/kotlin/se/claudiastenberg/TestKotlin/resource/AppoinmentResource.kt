@@ -33,9 +33,8 @@ constructor(private val service: AppoinmentService) {
     }
 
     @GET @Path("{id}")
-    fun getAppoinment(@PathParam("id") id: Long): Response {
-        return Response.ok(service.getAppoinment(id)).build()
-    }
+    fun getAppoinment(@PathParam("id") id: Long): Response = Response.ok(service.getAppoinment(id)).build()
+
 
     @PUT @Path("{id}")
     fun updateAppoiment(@PathParam("id") id: Long, appointment: Appointment): Response {
